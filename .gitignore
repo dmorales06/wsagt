@@ -1,7 +1,7 @@
 # Archivos de sistema
 .DS_Store
 Thumbs.db
-.idea
+.idea/
 
 # Dependencias de Node.js
 node_modules/
