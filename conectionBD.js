@@ -3,10 +3,11 @@ import mysql from 'mysql2';
 
 // Database configuration
 const dbConfigAGT = {
-    host: 'localhost',
-    user: 'odelcid',
-    password: 'Fuerza2023',
-    port: 3306,
+    host: 'myservicesqlagt-dmorales.c.aivencloud.com',
+    user: 'avnadmin',
+    password: 'AVNS_6FSzuZBkB_uEFBlzKGW',
+    database: 'acountgt2',
+    port: 28985,
     connectTimeout: 30000,
     connectionLimit: 10
 };
