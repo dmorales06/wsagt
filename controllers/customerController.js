@@ -18,7 +18,7 @@ controller.generarToken = async (req, res) => {
             res.json({token});
         }
     }catch(err){
-        res.status(500).send("El usuario no existe o esta inhabilitado.");
+        res.status(404).send("El usuario no existe o esta inhabilitado.");
     }
 
 
@@ -41,26 +41,26 @@ controller.usuarioID = async (req, res) => {
 //crear usuarios
 controller.crtusuario = async (req, res) => {
     try {
-        const usuario = {
-            Emp: req.body.Emp,
-            id_usuario: req.body.id_usuario,
-            acnomb: req.body.acnomb,
-            acdpi: parseInt(req.body.acdpi),
-            acfecalt: req.body.acfecalt,
-            acuser: req.body.acuser,
-            acpass: req.body.acpass,
-            acmail: req.body.acmail,
-            acfecna: req.body.acfecna,
-            acdepto: req.body.acdepto,
-            acpuest: req.body.acpuest,
-            acrol: req.body.acrol,
-        }
+        const usuario={id_usuario: req.body.id_usuario,
+            id_empresa:req.body.id_empresa,
+            usuario:req.body.id_usuario,
+            dpi:req.body.dpi,
+            fecha_alta:req.body.fecha_alta,
+            nombre_usuario:req.body.nombre_usuario,
+            contrasena: req.body.contrasena,
+            email: req.body.email,
+            fecha_nacimiento:req.body.fecha_nacimiento,
+            id_departamento:req.body.id_departamento,
+            id_puesto:req.body.id_puesto,
+            id_rol: req.body.id_rol,
+            id_agencia: req.body.id_agencia,
+            status:req.body.status,};
 
         const [result] = await poolAGT.query('insert into usuario set ?', [usuario]);
         if (result.affectedRows === 1) {
             res.status(201).json({
                 msg: 'Usuario creado exitosamente',
-                usuario: {...usuario, id: result.insertId}
+                usuario: {...usuario}
             });
         } else {
             res.status(400).json({msg: 'Error al crear el usuario'});
@@ -95,11 +95,11 @@ controller.updusuario = async (req, res) => {
     const usuario = usuarios.find(c => c.id_usuario === parseInt(req.params.id));
 
     const updateData = {
-        acnomb: req.body.acnomb,
-        acpass: req.body.acpass,
-        acdepto: req.body.acdepto,
-        acpuest: req.body.acpuest,
-        acrol: req.body.acrol,
+        nombre_usuario:req.body.nombre_usuario,
+        contrasena: req.body.contrasena ,
+        id_departamento: req.body.id_departamento,
+        id_puesto: req.body.id_puesto,
+        id_rol: req.body.id_rol,
     }
     if (!usuario) return res.status(404).json({msg: 'Usuario no encontrado'});
 

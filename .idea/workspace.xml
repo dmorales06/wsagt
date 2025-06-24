@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="798df70d-20b1-448f-9505-0385775f25d5" name="Changes" comment="Implemtacion de JWT">
-      <change afterPath="$PROJECT_DIR$/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/middleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conectionBD.js" beforeDir="false" afterPath="$PROJECT_DIR$/conectionBD.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/customerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/customerController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +87,7 @@
       <workItem from="1748094271598" duration="44000" />
       <workItem from="1750738491124" duration="9838000" />
       <workItem from="1750748364020" duration="114000" />
-      <workItem from="1750748538922" duration="1905000" />
+      <workItem from="1750748538922" duration="3702000" />
     </task>
     <task id="LOCAL-00001" summary="Implemtacion de JWT">
       <option name="closed" value="true" />
@@ -98,7 +97,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750748037798</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implemtacion de JWT">
+      <option name="closed" value="true" />
+      <created>1750750466934</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1750750466934</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
