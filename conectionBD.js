@@ -1,13 +1,18 @@
 import mysql from 'mysql2';
-//connectionString= `DSN=192.168.9.83;UID=dmorales;PWD=damg0610`
+import dotenv from 'dotenv';
+//connectionString= `DSN=192.168.9.83;UID=dmorales;PWD=-------`
+
+
+// Cargar variables de entorno
+dotenv.config();
 
 // Database configuration
 const dbConfigAGT = {
-    host: 'myservicesqlagt-dmorales.c.aivencloud.com',
-    user: 'avnadmin',
-    password: 'AVNS_6FSzuZBkB_uEFBlzKGW',
-    database: 'acountgt2',
-    port: 28985,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT,
     connectTimeout: 30000,
     connectionLimit: 10
 };
