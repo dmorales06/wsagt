@@ -1,12 +1,10 @@
 import mysql from 'mysql2';
 import dotenv from 'dotenv';
-//connectionString= `DSN=192.168.9.83;UID=dmorales;PWD=-------`
-
 
 // Cargar variables de entorno
 dotenv.config();
 
-// Database configuration
+// Configuración de la base de datos
 const dbConfigAGT = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -17,7 +15,7 @@ const dbConfigAGT = {
     connectionLimit: 10
 };
 
-// Create a connection pool
+// Crear pool de conexiones
 const poolAGT = mysql.createPool(dbConfigAGT).promise();
 
 // Función para probar conexiones
@@ -26,14 +24,11 @@ async function testConnections() {
         const connAGT = await poolAGT.getConnection();
         console.log('✅ Conectado a AGT');
         connAGT.release();
-
     } catch (err) {
         console.error('❌ Error de conexión:', err);
-
     }
 }
 
-// Ejecutar test de conexión
-//testConnections();
+// testConnections();
 
-export {poolAGT};
+export { poolAGT };
