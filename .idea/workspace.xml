@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="798df70d-20b1-448f-9505-0385775f25d5" name="Changes" comment="Implemtacion de JWT">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/authenticacion/authJWT.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conectionBD.js" beforeDir="false" afterPath="$PROJECT_DIR$/DBS/conectionBD_mysql.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/customerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/customerController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/Middleware/middlewareJWT.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/customer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +69,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/DBS" />
+      <recent name="$PROJECT_DIR$/Middleware" />
+      <recent name="$PROJECT_DIR$/authenticacion" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -87,7 +95,8 @@
       <workItem from="1748094271598" duration="44000" />
       <workItem from="1750738491124" duration="9838000" />
       <workItem from="1750748364020" duration="114000" />
-      <workItem from="1750748538922" duration="3702000" />
+      <workItem from="1750748538922" duration="4545000" />
+      <workItem from="1750816729777" duration="3542000" />
     </task>
     <task id="LOCAL-00001" summary="Implemtacion de JWT">
       <option name="closed" value="true" />
