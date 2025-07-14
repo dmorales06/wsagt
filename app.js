@@ -6,6 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+
 //Rutas
 app.use('/', customerRoutes);
 
