@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: true}));
 //Rutas
 app.use('/', customerRoutes);
 
-const port = process.env.PORT || 2000;
+const port = 2000;
 
 //Inicio de servidor
 app.listen(port, () => {

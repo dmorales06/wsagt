@@ -1,22 +1,24 @@
 {
   "name": "wsagt",
   "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "../node_modules/.bin/nodemon Backend/app.js",
-    "front": "../node_modules/.bin/nodemon Backend/app.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "description": "",
-  "devDependencies": {
-    "nodemon": "^2.0.22"
+  "keywords": [],
+  "license": "ISC",
+  "author": "Diego Morales",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "use": "@vercel/node"
   },
   "dependencies": {
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.14.1"
+    "mysql2": "^3.14.2",
+    "vercel": "^44.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
