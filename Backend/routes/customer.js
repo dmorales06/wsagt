@@ -7,6 +7,10 @@ import {verificarToken} from "../Middleware/middlewareJWT.js";
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.render('Si esta corriendo la api');
+});
+
 //obtener token
 router.post('/api/gentoken',token.generarToken);
 
