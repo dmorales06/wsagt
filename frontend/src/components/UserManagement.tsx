@@ -117,7 +117,7 @@ export const UserManagement: React.FC<UserManagementProps> = ({ currentUser }) =
     };
     return colors[role as keyof typeof colors] || 'bg-gray-100 text-gray-800';
   };
-
+  console.log(currentUser);
   return (
       <div className="space-y-6">
         <div className="flex items-center space-x-3 mb-6">

@@ -16,6 +16,8 @@ controller.usuarios = async (req, res) => {
     }
 };
 
+
+
 // Obtener usuario por ID
 controller.usuarioID = async (req, res) => {
     try {
@@ -218,5 +220,13 @@ controller.updusuario = async (req, res) => {
     }
 };
 
+controller.empresas = async (req, res) => {
+    try{
+        const [empresas] = await poolAGT.query('SELECT * FROM empresa WHERE STATUS=?', ['A']);
+        res.json(empresas);
+    }catch(error){
+        res.status(500).json({error: 'Error al obtener empresas'});
+    }
+}
 
 export default controller;

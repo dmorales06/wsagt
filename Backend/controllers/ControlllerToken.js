@@ -1,5 +1,6 @@
 import {poolAGT} from "../DBS/conectionBD_mysql.js";
 import {generarToken} from '../authenticacion/authJWT.js';
+import bcryptjs from 'bcryptjs';
 
 
 const token = {};
@@ -9,12 +10,12 @@ token.generarToken = async (req, res) => {
 
 
     try {
-        const {id_usuario, usuario, contrasena} = req.body;
-        const [usuarios] = await poolAGT.query('select * from usuario where status=?', ['A']);
-        const usuarioObtenido = usuarios.find(c => c.id_usuario === id_usuario);
+        const {usuario, contrasena,empresa} = req.body;
+        const [usuarios] = await poolAGT.query('select * from usuario where status=? and id_empresa', ['A',empresa]);
+        const usuarioObtenido = usuarios.find(c => c.usuario === usuario);
 
 
-        if (usuarioObtenido.id_usuario == id_usuario && usuarioObtenido.usuario == usuario && usuarioObtenido.contrasena == contrasena) {
+        if (usuarioObtenido.id_empresa == empresa && usuarioObtenido.usuario == usuario &&  (await bcryptjs.compare(contrasena, usuarioObtenido.contrasena))) {
 
             const token = generarToken(usuarioObtenido);
             res.json({token});

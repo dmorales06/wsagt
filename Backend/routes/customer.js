@@ -8,14 +8,15 @@ import {verificarToken} from "../Middleware/middlewareJWT.js";
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('Si esta corriendo la api');
+    res.json('Si esta corriendo la api AGT 2.0');
 });
 
 //obtener token
 router.post('/api/gentoken',token.generarToken);
 
 //Gestion de usuarios
-router.get('/api/users',usuarios.usuarios);
+
+router.get('/api/users',verificarToken,usuarios.usuarios);
 router.get('/api/users/:id',usuarios.usuarioID);
 router.post('/api/users',usuarios.crtusuario);
 router.put('/api/users/:id',usuarios.updusuario);
@@ -31,6 +32,9 @@ router.post('/api/rol/:rol',roles.updrol);
 
 //pemisos
 router.get('/api/permisos',roles.permisos);
+
+//empresas
+router.get('/api/empresas',usuarios.empresas)
 
 
 

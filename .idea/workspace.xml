@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="798df70d-20b1-448f-9505-0385775f25d5" name="Changes" comment="Cambios en los controladores">
-      <change afterPath="$PROJECT_DIR$/../frontend/src/views/usuario.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../AGT 1" beforeDir="false" afterPath="$PROJECT_DIR$/../../AGT 1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../AGT 2" beforeDir="false" afterPath="$PROJECT_DIR$/../../AGT 2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Analizador-lexico" beforeDir="false" afterPath="$PROJECT_DIR$/../../Analizador-lexico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/UserManagement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/UserManagement.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="798df70d-20b1-448f-9505-0385775f25d5" name="Changes" comment="Cambios en los controladores" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +18,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -55,42 +49,25 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;23.10.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.15.3&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/diegomorales/WebstormProjects/wsagt/Backend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/diegomorales/WebstormProjects/wsagt&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/diegomorales/WebstormProjects/wsagt/frontend/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Backend" />
       <recent name="$PROJECT_DIR$/DBS" />
       <recent name="$PROJECT_DIR$/Middleware" />
       <recent name="$PROJECT_DIR$/authenticacion" />
       <recent name="$PROJECT_DIR$" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.dev" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -116,10 +93,7 @@
       <workItem from="1750816729777" duration="5454000" />
       <workItem from="1751479694431" duration="1090000" />
       <workItem from="1751516727977" duration="1274000" />
-      <workItem from="1752447948753" duration="7990000" />
-      <workItem from="1752466042766" duration="3807000" />
-      <workItem from="1752727896205" duration="256000" />
-      <workItem from="1753063462180" duration="9014000" />
+      <workItem from="1752447948753" duration="8457000" />
     </task>
     <task id="LOCAL-00001" summary="Implemtacion de JWT">
       <option name="closed" value="true" />
