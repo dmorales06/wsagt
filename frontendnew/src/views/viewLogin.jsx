@@ -48,7 +48,8 @@ export function ViewLogin() {
             // Callback para éxito
             (successMessage) => {
                 //addAlert('success', successMessage);
-                navigate('/home'); // Redirección al home si login es exitoso
+                navigate('/home'); // Redirección al home si login es exitoso}
+                sessionStorage.setItem('empresa', empresaSeleccionada);
             }
         );
     };

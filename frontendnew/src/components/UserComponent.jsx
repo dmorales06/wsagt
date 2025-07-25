@@ -18,11 +18,12 @@ export const UserComponent = ()=>{
     const [userPermissions, setUserPermissions] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
 
+
+
     useEffect(()=>{
-        getAllUsers().then((data)=>{
+        getAllUsers(sessionStorage.getItem('empresa')).then((data)=>{
             setAllUsers(data);
             setUsuarios(data);
-            console.log(data);
             loadAllUserPermissions(data);
         }).catch(err => addAlert('error', 'Servidor no responde'));
 
@@ -34,7 +35,6 @@ export const UserComponent = ()=>{
 
     useEffect(() => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
-
         const filteredUsers = allUsers.filter(user =>
             user.nombre_usuario.toLowerCase().includes(lowerCaseSearchTerm) ||
             user.email.toLowerCase().includes(lowerCaseSearchTerm) ||

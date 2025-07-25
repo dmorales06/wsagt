@@ -1,9 +1,8 @@
 import api from "./api";
 
-export async function getAllUsers(){
+export async function getAllUsers(empresa){
     try {
-        const response = await api.get('/users/'+1);
-        console.log(response.data);
+        const response = await api.get('/users/'+empresa);
         return response.data;
     } catch (error) {
         if (error.response) {
