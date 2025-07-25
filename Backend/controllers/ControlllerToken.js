@@ -11,7 +11,11 @@ token.generarToken = async (req, res) => {
 
     try {
         const {usuario, contrasena,empresa} = req.body;
-        const [usuarios] = await poolAGT.query('select * from usuario where status=? and id_empresa', ['A',empresa]);
+        const [usuarios] = await poolAGT.query(`select usr.*, roles.nombre as rol, roles.descripcion as nom_rol
+                                                from usuario usr
+                                                         left join rol roles on usr.id_rol = roles.id_rol
+                                                where usr.status = ?
+                                                  and usr.id_empresa = ?`, ['A',empresa]);
         const usuarioObtenido = usuarios.find(c => c.usuario === usuario);
 
 

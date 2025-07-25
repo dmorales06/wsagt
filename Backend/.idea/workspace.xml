@@ -9,14 +9,10 @@
       <change beforePath="$PROJECT_DIR$/../../AGT 2" beforeDir="false" afterPath="$PROJECT_DIR$/../../AGT 2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Analizador-lexico" beforeDir="false" afterPath="$PROJECT_DIR$/../../Analizador-lexico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontendnew/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontendnew/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontendnew/src/services/api.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/services/api.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontendnew/src/services/serviceLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/services/serviceLogin.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontendnew/src/services/serviceUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/services/serviceUser.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontendnew/src/utils/PrivateRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/utils/PrivateRoute.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontendnew/src/utils/utilsAlerts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/utils/utilsAlerts.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontendnew/src/views/Inicio.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/views/Inicio.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontendnew/src/views/user.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontendnew/src/views/viewLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/views/viewLogin.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +124,7 @@
       <workItem from="1752466042766" duration="3807000" />
       <workItem from="1752727896205" duration="256000" />
       <workItem from="1753063462180" duration="9014000" />
-      <workItem from="1753108072543" duration="16854000" />
+      <workItem from="1753108072543" duration="23776000" />
     </task>
     <task id="LOCAL-00001" summary="Implemtacion de JWT">
       <option name="closed" value="true" />
