@@ -59,6 +59,8 @@ export async function getTokenUser(usuario, contrasena,empresaSeleccionada,onErr
         getPermisosUser(datosSession.id_usuario,onError)
 
 
+
+
         // Opcional: guardar en localStorage
         localStorage.setItem('token', token);
         sessionStorage.setItem('usuario', JSON.stringify(datosSession));

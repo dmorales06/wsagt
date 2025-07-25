@@ -12,6 +12,8 @@ import {
     Database
 } from 'lucide-react';
 import {logout} from "../utils/authJWT";
+import {getRoleColor} from "../services/serviceUser";
+import {UserComponent} from "../components/UserComponent";
 
 export function Inicio() {
     const navigate = useNavigate();
@@ -59,10 +61,11 @@ export function Inicio() {
                             <div className="flex items-center space-x-2">
                                 <User className="w-5 h-5 text-gray-400"/>
                                 <span
-                                    className="text-sm text-gray-700">{JSON.parse(sessionStorage.getItem('usuario')).nombre_usuario}</span>
+                                    className="text-sm text-gray-700">{JSON.parse(sessionStorage.getItem('usuario')).nombre_usuario}
+                                </span>
                                 <span
-                                    className="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
-                                    {JSON.parse(sessionStorage.getItem('usuario')).rol}
+                                    className={`px-2 py-1 text-xs font-medium rounded-full ${getRoleColor(JSON.parse(sessionStorage.getItem('usuario')).rol)}`}>
+                                    {JSON.parse(sessionStorage.getItem('usuario')).rol.toUpperCase()}
                                 </span>
                             </div>
                             <button
@@ -83,17 +86,17 @@ export function Inicio() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex space-x-8">
                         {permisos.some(p => p.url === 'view_tickets') && (
-                        <button
-                            onClick={() => setActiveTab('tickets')}
-                            className={`flex items-center space-x-2 px-4 py-3 border-b-2 text-sm font-medium transition-colors ${
-                                activeTab === 'tickets'
-                                    ? 'border-blue-500 text-blue-600'
-                                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                            }`}
-                        >
-                            <BarChart3 className="w-4 h-4"/>
-                            <span>Tickets</span>
-                        </button>
+                            <button
+                                onClick={() => setActiveTab('tickets')}
+                                className={`flex items-center space-x-2 px-4 py-3 border-b-2 text-sm font-medium transition-colors ${
+                                    activeTab === 'tickets'
+                                        ? 'border-blue-500 text-blue-600'
+                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                }`}
+                            >
+                                <BarChart3 className="w-4 h-4"/>
+                                <span>Tickets</span>
+                            </button>
                         )}
 
                         {permisos.some(p => p.url === 'manage_users') && (
@@ -128,8 +131,7 @@ export function Inicio() {
                 {activeTab === 'users' && (
                     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
                         <div className="text-center">
-                            <Database className="w-12 h-12 mx-auto mb-4 text-gray-300"/>
-                            <p className="text-gray-500">Módulo de usuarios en desarrollo</p>
+                            <UserComponent className="w-5 h-5"/>
                         </div>
                     </div>
                 )}
