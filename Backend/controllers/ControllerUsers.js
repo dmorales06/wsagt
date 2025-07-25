@@ -5,7 +5,16 @@ const controller = {};
 //obtener usuarios generales
 controller.usuarios = async (req, res) => {
     try {
-        const [usuarios] = await poolAGT.query('SELECT * FROM usuario');
+        const id_empresa = req.params.id_empresa;
+        const [usuarios] = await poolAGT.query(`select usr.*,
+                                                       roles.nombre      as rol,
+                                                       roles.descripcion as nom_rol,
+                                                       dpt.nombre        as departamento
+                                                from usuario usr
+                                                         left join rol roles on usr.id_rol = roles.id_rol
+                                                         left join departamento dpt on dpt.id_departamento = usr.id_departamento
+                                                where usr.status = ?
+                                                  and usr.id_empresa = ?`,['A',id_empresa]);
         res.json(usuarios);
     } catch (error) {
         console.error('Error al obtener usuarios:', error);

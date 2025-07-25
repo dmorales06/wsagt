@@ -16,7 +16,7 @@ router.post('/api/gentoken',token.generarToken);
 
 //Gestion de usuarios
 
-router.get('/api/users',verificarToken,usuarios.usuarios);
+router.get('/api/users/:id_empresa',verificarToken,usuarios.usuarios);
 router.get('/api/users/:id',usuarios.usuarioID);
 router.post('/api/users',usuarios.crtusuario);
 router.put('/api/users/:id',usuarios.updusuario);
@@ -32,6 +32,7 @@ router.post('/api/rol/:rol',roles.updrol);
 
 //pemisos
 router.get('/api/permisosUser/:id',roles.permisosUser);
+router.get('/api/nompermisos/',roles.nompermisos);
 
 //empresas
 router.get('/api/empresas',usuarios.empresas)

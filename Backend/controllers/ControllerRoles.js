@@ -40,7 +40,7 @@ controller.permisosUser = async (req, res) => {
                                                          join permiso permisos
                                                               on usrpermisos.id_opcion = permisos.id_opcion
                                                 where id_usuario = ?
-                                                  and permisos.estado = 'A'`, [id_usuario, 'A']);
+                                                  and permisos.estado = ?`, [id_usuario, 'A']);
 
         if (permisos.length === 0) {
             res.status(404).send("El usuario no tiene permisos.");
@@ -51,6 +51,20 @@ controller.permisosUser = async (req, res) => {
     } catch (err) {
         res.status(405).send("El usuario no existe o esta inhabilitado.");
     }
+}
+
+controller.nompermisos = async (req, res) => {
+    try{
+        const [roles] = await poolAGT.query('select id_opcion,nombre,url from permiso where estado=?',['A']);
+        if (roles.length === 0) {
+            res.status(404).send("El rol ingresado no existe.");
+        }else{
+            res.json(roles);
+        }
+    }catch(err){
+        res.status(405).send("El rol ingresado no existe o esta inhabilitado.");
+    }
+
 }
 
 
