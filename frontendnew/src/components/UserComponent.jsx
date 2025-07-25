@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react";
-import { Users, Shield, ToggleLeft, ToggleRight, Edit3, Save, X, Search, Plus } from 'lucide-react'; // Import Plus icon
+import {Users, Shield, ToggleLeft, ToggleRight, Edit3, Save, X, Search, Plus, Edit2} from 'lucide-react'; // Import Plus icon
 import {
+    getAllPermisos,
     getAllUsers,
     getNombrePermiso,
     getPermisosManagerUser,
     getPermisosUser,
-    getRoleColor
+    getRoleColor, updatePermisos, updateStatus
 } from '../services/serviceUser';
 import {useAlert} from '../utils/utilsAlerts';
 
@@ -13,15 +14,20 @@ export const UserComponent = ()=>{
     const {addAlert} = useAlert();
     const [usuarios, setUsuarios] = useState([]);
     const [allUsers, setAllUsers] = useState([]);
+    const [allPermisos, setAllPermisos] = useState([]);
     const [permisos, setPermisos] = useState([]);
     const [editingUser, setEditingUser] = useState(null);
     const [userPermissions, setUserPermissions] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
+    const [editPermissions, setEditPermissions] = useState([]);
+
+    const empresa = sessionStorage.getItem('empresa');
+
 
 
 
     useEffect(()=>{
-        getAllUsers(sessionStorage.getItem('empresa')).then((data)=>{
+        getAllUsers(empresa).then((data)=>{
             setAllUsers(data);
             setUsuarios(data);
             loadAllUserPermissions(data);
@@ -34,6 +40,9 @@ export const UserComponent = ()=>{
     },[]);
 
     useEffect(() => {
+        getAllPermisos(empresa).then((data)=>{
+            setAllPermisos(data);
+        });
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
         const filteredUsers = allUsers.filter(user =>
             user.nombre_usuario.toLowerCase().includes(lowerCaseSearchTerm) ||
@@ -49,12 +58,12 @@ export const UserComponent = ()=>{
 
         for (const user of users) {
             try {
-                const permissions = await getPermisosManagerUser(user.id_usuario);
+                const permissions = await getPermisosManagerUser(user.id_usuario,empresa);
                 if (permissions && Array.isArray(permissions)) {
                     const permissionsWithNames = await Promise.all(
                         permissions.map(async (permission) => {
                             try {
-                                const nameData = await getNombrePermiso(permission.url);
+                                const nameData = await getNombrePermiso(permission.url,empresa);
                                 return {
                                     ...permission,
                                     displayName: nameData?.nombre || permission.url
@@ -81,25 +90,80 @@ export const UserComponent = ()=>{
     };
 
     const handleEditPermissions = (user) => {
-        addAlert('info', 'Funcionalidad en proceso', user);
-        /*setEditingUser(user.id);
-        setEditPermissions([...user.permissions]);*/
+        setEditingUser(user);
+        setEditPermissions(userPermissions[user]?.map(p => p.id_opcion) || []);
+
+
     };
 
-    const handleSavePermissions = (userId) => {
-        addAlert('info', 'Funcionalidad en proceso');
-        /*const updatedUser = UserService.updateUserPermissions(userId, editPermissions, currentUser);
-        if (updatedUser) {
-            setUsers(users.map(u => u.id === userId ? updatedUser : u));
+    const handleSavePermissions = async (userId) => {
+        try {
+            const id_empresa = Number(empresa);
+            const usuario = allUsers.find(u => u.id_usuario === userId);
+
+            if (!usuario) {
+                addAlert('error', 'Usuario no encontrado');
+                return;
+            }
+
+            const payload = editPermissions.map(id_opcion => ({
+                id_empresa,
+                id_opcion,
+                id_rol: usuario.id_rol, // o ajusta según tus datos
+                id_usuario: userId
+            }));
+
+            updatePermisos(userId,empresa,payload);
+
+            addAlert('success', 'Permisos guardados correctamente');
             setEditingUser(null);
-            setEditPermissions([]);*/
+            setEditPermissions([]);
 
+        } catch (error) {
+            console.error(error);
+            addAlert('error', 'Error al guardar los permisos');
+        }
     };
+
 
     const handleCancelEdit = () => {
-        addAlert('info', 'Funcionalidad en proceso');
-        /*setEditingUser(null);
-        setEditPermissions([]);*/
+        //addAlert('info', 'Funcionalidad en proceso');
+        setEditingUser(null);
+        setEditPermissions([]);
+    };
+
+    const togglePermission = (permisoId) => {
+        if (editPermissions.includes(permisoId)) {
+            setEditPermissions(editPermissions.filter(p => p !== permisoId));
+        } else {
+            setEditPermissions([...editPermissions, permisoId]);
+        }
+    };
+
+    const toggleUserStatus=(userId)=> {
+
+        const userIndex = allUsers.findIndex(u => u.id_usuario === userId);
+        if (userIndex === -1) return null;
+
+        const user = allUsers[userIndex];
+
+        const updatedUser = {
+            ...user,
+            status: user.status === 'A' ? 'I' : 'A'
+        };
+
+        allUsers[userIndex] = updatedUser;
+        return updatedUser;
+    }
+
+    const handleToggleUserStatus = async (userId) => {
+        const updatedUser = toggleUserStatus(userId);
+
+        updateStatus(updatedUser.id_usuario, empresa, updatedUser.status, updatedUser.usuario);
+
+        if (updatedUser) {
+            setUsuarios(usuarios.map(u => u.id_usuario === userId ? updatedUser : u));
+        }
     };
 
     // Placeholder function for handling new user creation
@@ -154,7 +218,7 @@ export const UserComponent = ()=>{
                                 <div
                                     key={user.id_usuario}
                                     className={`p-4 border rounded-lg ${
-                                        user.status ? 'border-gray-200' : 'border-red-200 bg-red-50'
+                                        user.status === 'A' ? 'border-gray-200' : 'border-red-200 bg-red-50'
                                     }`}
                                 >
                                     <div className="flex items-center justify-between mb-4">
@@ -170,7 +234,7 @@ export const UserComponent = ()=>{
                                         </div>
 
                                         <div className="flex items-center space-x-2">
-                                            {permisos.some(p => p.url === 'manage_users') && (
+                                            {permisos.some(p => p.url === 'manage_permissions') && (
                                                 <>
                                                     {editingUser === user.id_usuario ? (
                                                         <>
@@ -189,29 +253,31 @@ export const UserComponent = ()=>{
                                                         </>
                                                     ) : (
                                                         <button
-                                                            onClick={() => handleEditPermissions(user)}
+                                                            onClick={() => handleEditPermissions(user.id_usuario)}
                                                             className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
                                                         >
                                                             <Edit3 className="w-4 h-4" />
                                                         </button>
                                                     )}
+
+                                                    <button
+                                                        onClick={() => handleToggleUserStatus(user.id_usuario)}
+                                                        className={`p-2 rounded-lg ${
+                                                            user.status === 'A'
+                                                                ? 'text-green-600 hover:bg-green-50'
+                                                                : 'text-red-600 hover:bg-red-50'
+                                                        }`}
+                                                    >
+                                                        {user.status === 'A' ? (
+                                                            <ToggleRight className="w-5 h-5" />
+                                                        ) : (
+                                                            <ToggleLeft className="w-5 h-5" />
+                                                        )}
+                                                    </button>
                                                 </>
                                             )}
 
-                                            <button
-                                                //onClick={() => handleToggleUserStatus(user.id)}
-                                                className={`p-2 rounded-lg ${
-                                                    user.status
-                                                        ? 'text-green-600 hover:bg-green-50'
-                                                        : 'text-red-600 hover:bg-red-50'
-                                                }`}
-                                            >
-                                                {user.status ? (
-                                                    <ToggleRight className="w-5 h-5" />
-                                                ) : (
-                                                    <ToggleLeft className="w-5 h-5" />
-                                                )}
-                                            </button>
+
                                         </div>
                                     </div>
 
@@ -219,19 +285,19 @@ export const UserComponent = ()=>{
                                         <h4 className="text-sm font-medium text-gray-700 mb-2 text-left">Permisos:</h4>
                                         {editingUser === user.id_usuario ? (
                                             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                                                {userPermissions[user.id_usuario]?.map((permission) => (
+                                                {allPermisos.map((permission) => (
                                                     <label
                                                         key={permission.url}
                                                         className="flex items-center space-x-2 text-sm"
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            //checked={editPermissions.includes(permission)}
-                                                            //onChange={() => togglePermission(permission)}
+                                                            checked={editPermissions.includes(permission.id_opcion)}
+                                                            onChange={() => togglePermission(permission.id_opcion)}
                                                             className="rounded border-gray-300"
                                                         />
                                                         <span className="text-gray-700">
-                                                            {permission.displayName}
+                                                            {permission.nombre}
                                                         </span>
                                                     </label>
                                                 ))}

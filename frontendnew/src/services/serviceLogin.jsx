@@ -56,7 +56,7 @@ export async function getTokenUser(usuario, contrasena,empresaSeleccionada,onErr
 
         }
 
-        getPermisosUser(datosSession.id_usuario,onError)
+        getPermisosUser(datosSession.id_usuario,dataUser.id_empresa,onError)
 
 
 

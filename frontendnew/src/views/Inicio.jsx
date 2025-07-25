@@ -9,7 +9,8 @@ import {
     User,
     LogOut,
     Settings,
-    Database
+    Database,
+    CodesandboxIcon,
 } from 'lucide-react';
 import {logout} from "../utils/authJWT";
 import {getRoleColor} from "../services/serviceUser";
@@ -17,7 +18,7 @@ import {UserComponent} from "../components/UserComponent";
 
 export function Inicio() {
     const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState('');
+    const [activeTab, setActiveTab] = useState('inicio');
     const [permisos, setPermisos] = useState([]);
 
     useEffect(() => {
@@ -53,8 +54,8 @@ export function Inicio() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center space-x-4">
-                            <Ticket className="w-8 h-8 text-blue-600"/>
-                            <h1 className="text-xl font-bold text-gray-900">Sistema de Gestiones</h1>
+                            <CodesandboxIcon className="w-8 h-8 text-blue-600"/>
+                            <h1 className="text-xl font-bold text-gray-900">AGT</h1>
                         </div>
 
                         <div className="flex items-center space-x-4">
@@ -94,7 +95,7 @@ export function Inicio() {
                                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                 }`}
                             >
-                                <BarChart3 className="w-4 h-4"/>
+                                <Ticket className="w-4 h-4"/>
                                 <span>Tickets</span>
                             </button>
                         )}
@@ -155,6 +156,15 @@ export function Inicio() {
                         <div className="text-center">
                             <BarChart3 className="w-12 h-12 mx-auto mb-4 text-gray-300"/>
                             <p className="text-gray-500">Módulo de operaciones en desarrollo</p>
+                        </div>
+                    </div>
+                )}
+
+                {activeTab === 'inicio' && (
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                        <div className="text-center">
+                            <CodesandboxIcon className="w-48 h-48 mx-auto mb-4 text-gray-500"/>
+                            <p className="text-gray-500 text-9xl">AGT</p>
                         </div>
                     </div>
                 )}

@@ -31,9 +31,9 @@ export const getRoleColor = (role) => {
 };
 
 
-export async function getPermisosUser(id_usuario,onError){
+export async function getPermisosUser(id_usuario,empresa,onError){
     try{
-        const response = await api.get('/permisosUser/' + id_usuario);
+        const response = await api.get(`/permisosUser/${empresa}/${id_usuario}`);
         sessionStorage.setItem('permisos', JSON.stringify(response.data));
         return response.data;
 
@@ -60,9 +60,9 @@ export async function getPermisosUser(id_usuario,onError){
     }
 }
 
-export async function getPermisosManagerUser(id_usuario){
+export async function getPermisosManagerUser(id_usuario,empresa){
     try{
-        const response = await api.get('/permisosUser/' + id_usuario);
+        const response = await api.get(`/permisosUser/${empresa}/${id_usuario}`);
         return response.data;
     }catch(error){
         // Si es un error de red (no hay respuesta del servidor)
@@ -86,11 +86,41 @@ export async function getPermisosManagerUser(id_usuario){
     }
 }
 
-export async function getNombrePermiso(permiso){
-    const response = await api.get('/nompermisos');
+export async function getNombrePermiso(permiso,empresa){
+    const response = await api.get(`/nompermisos/${empresa}`);
     const nombrePermiso = response.data.find(c => c.url === permiso);
-
-
     return nombrePermiso;
+
+}
+
+export async function getAllPermisos(empresa){
+    const response = await api.get(`/nompermisos/${empresa}`);
+    return response.data;
+
+}
+
+export async function updatePermisos(id_usuario,empresa, permisos){
+    try{
+        await api.delete(`/permisosUser/${empresa}/${id_usuario}`);
+        const response = await api.post('/permisosUser',permisos);
+        return response.data;
+    }catch(error){
+        console.log(error.message);
+    }
+
+}
+
+export async function updateStatus(id_usuario,empresa,status,usuario){
+    try{
+        const response = await api.put(`/user/${empresa}`,{
+            status,
+            id_usuario,
+            usuario
+        });
+        return response.data;
+    }
+    catch(error){
+        console.log(error.message);
+    }
 
 }
