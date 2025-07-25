@@ -1,33 +1,43 @@
 import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {getEmpresa, getTokenUser} from "../services/serviceLogin";
+import {getAllUsers} from "../services/serviceUser";
 import {Eye, EyeOff, User, Building, Lock} from 'lucide-react';
 import {useAlert} from '../utils/utilsAlerts';
+import {logout} from '../utils/authJWT';
 
 export function ViewLogin() {
+    const {addAlert} = useAlert();
     const [empresas, setEmpresas] = useState([]);
+    const [error, setError] = useState('');
     const [empresaSeleccionada, setEmpresaSeleccionada] = useState('');
     const [usuario, setUsuario] = useState('');
+
     const [contrasena, setContrasena] = useState('');
+
     const [mostrarContrasena, setMostrarContrasena] = useState(false);
 
-    useEffect(() => {
-        async function cargarEmpresas() {
-            try {
-                const data = await getEmpresa();
-                setEmpresas(data);
-            } catch (error) {
-                console.error("Error al obtener empresas", error);
-            }
-        }
 
-        cargarEmpresas();
+    useEffect(() => {
+        logout()
+        getEmpresa()
+            .then(data => {
+                setEmpresas(data);
+                // Seleccionar la primera empresa por defecto
+                if (data.length > 0) {
+                    setEmpresaSeleccionada(data[0].id_empresa); // o una por ID específica si quieres
+                }
+            })
+            .catch(err => addAlert('error', 'Servidor no responde'));
+
     }, []);
 
 
-    const {addAlert} = useAlert();
     const navigate = useNavigate();
+
+
     const handleLogin = async () => {
+        sessionStorage.setItem('usuario', JSON.stringify());
         if (!usuario || !contrasena || !empresaSeleccionada) {
             addAlert('warning', 'Por favor llena todos los campos');
             return;
@@ -41,8 +51,9 @@ export function ViewLogin() {
                 navigate('/home'); // Redirección al home si login es exitoso
             }
         );
-
     };
+
+    if (error) return <p>Error: {error}</p>;
 
 
     return (
@@ -71,6 +82,7 @@ export function ViewLogin() {
                                     </div>
                                     <input
                                         type="text"
+                                        required={true}
                                         value={usuario}
                                         onChange={(e) => setUsuario(e.target.value)}
                                         className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl"
@@ -89,6 +101,7 @@ export function ViewLogin() {
                                     </div>
                                     <input
                                         type={mostrarContrasena ? 'text' : 'password'}
+                                        required={true}
                                         value={contrasena}
                                         onChange={(e) => setContrasena(e.target.value)}
                                         className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-xl"

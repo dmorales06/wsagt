@@ -21,6 +21,7 @@ controller.usuarios = async (req, res) => {
 // Obtener usuario por ID
 controller.usuarioID = async (req, res) => {
     try {
+        const {usuario, contrasena,empresa} = req.body;
         const id = parseInt(req.params.id);
 
         // Validar que el ID sea un número válido

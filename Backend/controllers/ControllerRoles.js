@@ -28,10 +28,16 @@ controller.updrol = async (req, res) => {
     }
 }
 
-//Roles
-controller.permisos = async (req, res) => {
-    const [roles] = await poolAGT.query('select * from permiso');
-    res.json(roles);
+//obtener permisos por usuario
+controller.permisosUser = async (req, res) => {
+    const id_usuario = req.params.id;
+    const [permisos] = await poolAGT.query(`select usrpermisos.id_rol,usrpermisos.id_opcion,permisos.nombre,permisos.url from acountgt2.permiso_rol usrpermisos
+join acountgt2.permiso permisos on usrpermisos.id_opcion=permisos.id_opcion
+where id_usuario=? and permisos.estado='A'`,[id_usuario,'A']);
+    res.json(permisos);
 }
+
+
+
 
 export default controller;

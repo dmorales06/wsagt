@@ -5,11 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="798df70d-20b1-448f-9505-0385775f25d5" name="Changes" comment="Cambios en los controladores">
-      <change afterPath="$PROJECT_DIR$/../frontend/src/views/usuario.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontendnew/src/components/UserComponent.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontendnew/src/services/serviceLogin.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontendnew/src/services/serviceUser.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontendnew/src/utils/PrivateRoute.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontendnew/src/utils/authJWT.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontendnew/src/views/Inicio.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../AGT 1" beforeDir="false" afterPath="$PROJECT_DIR$/../../AGT 1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../AGT 2" beforeDir="false" afterPath="$PROJECT_DIR$/../../AGT 2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Analizador-lexico" beforeDir="false" afterPath="$PROJECT_DIR$/../../Analizador-lexico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/UserManagement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/UserManagement.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/.idea/reacttest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/.idea/reacttest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/postcss.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/public/logo192.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/public/logo192.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/public/logo512.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/public/logo512.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/public/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/public/robots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/components/AlertComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/components/AlertComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/services/api.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/services/api.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/services/serviceLogin.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/services/usuarios.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/utils/utilsAlerts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/utils/utilsAlerts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/views/TicketDetail.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/views/user.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/views/user.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/src/views/viewLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/src/views/viewLogin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reacttest/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontendnew/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +154,7 @@
       <workItem from="1752466042766" duration="3807000" />
       <workItem from="1752727896205" duration="256000" />
       <workItem from="1753063462180" duration="9014000" />
+      <workItem from="1753108072543" duration="14950000" />
     </task>
     <task id="LOCAL-00001" summary="Implemtacion de JWT">
       <option name="closed" value="true" />

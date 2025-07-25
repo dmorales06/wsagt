@@ -1,4 +1,3 @@
-// AlertComponent.jsx
 import React from 'react';
 import { useAlert } from '../utils/utilsAlerts';
 import { X, AlertTriangle, CheckCircle, Info } from 'lucide-react';

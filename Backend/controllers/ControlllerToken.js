@@ -18,12 +18,12 @@ token.generarToken = async (req, res) => {
         if (usuarioObtenido.id_empresa == empresa && usuarioObtenido.usuario == usuario &&  (await bcryptjs.compare(contrasena, usuarioObtenido.contrasena))) {
 
             const token = generarToken(usuarioObtenido);
-            res.json({token});
+            res.json({token,usuarioObtenido});
         } else {
-            res.status(404).send("contraseña o usuario incorrecto");
+            res.status(406).send("contraseña o usuario incorrecto");
         }
     } catch (err) {
-        res.status(404).send("El usuario no existe o esta inhabilitado.");
+        res.status(405).send("El usuario no existe o esta inhabilitado.");
     }
 
 

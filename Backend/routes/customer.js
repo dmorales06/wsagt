@@ -31,7 +31,7 @@ router.get('/api/roles',roles.roles);
 router.post('/api/rol/:rol',roles.updrol);
 
 //pemisos
-router.get('/api/permisos',roles.permisos);
+router.get('/api/permisosUser/:id',roles.permisosUser);
 
 //empresas
 router.get('/api/empresas',usuarios.empresas)

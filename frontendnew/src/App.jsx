@@ -4,9 +4,11 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { AlertProvider } from './utils/utilsAlerts'; // asegúrate que esto existe
 import { AlertComponent } from './components/AlertComponent';
 
+import PrivateRoute from './utils/PrivateRoute';
+
 //vistas
 import { ViewLogin } from './views/viewLogin';
-import {Ticket} from "./views/TicketDetail";
+import {Inicio} from "./views/Inicio";
 
 
 export function App (){
@@ -18,7 +20,7 @@ export function App (){
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<ViewLogin />} />
-                    <Route path="/home" element={<Ticket />} />
+                    <Route path="/home" element={<PrivateRoute><Inicio /></PrivateRoute>} />
                 </Routes>
             </BrowserRouter>
         </AlertProvider>
