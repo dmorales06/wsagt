@@ -31,7 +31,7 @@ controller.updrol = async (req, res) => {
 //obtener permisos por usuario
 controller.permisosUser = async (req, res) => {
     try {
-        const id_usuario = req.params.id;
+        const {id,empresa} = req.params;
         const [permisos] = await poolAGT.query(`select usrpermisos.id_rol,
                                                        usrpermisos.id_opcion,
                                                        permisos.nombre,
@@ -40,11 +40,11 @@ controller.permisosUser = async (req, res) => {
                                                          join permiso permisos
                                                               on usrpermisos.id_opcion = permisos.id_opcion
                                                 where id_usuario = ?
-                                                  and permisos.estado = ?`, [id_usuario, 'A']);
+                                                  and permisos.estado = ? and permisos.id_empresa=?`, [id, 'A',empresa]);
 
         if (permisos.length === 0) {
             res.status(404).send("El usuario no tiene permisos.");
-        }else{
+        } else {
             res.json(permisos);
         }
 
@@ -54,17 +54,62 @@ controller.permisosUser = async (req, res) => {
 }
 
 controller.nompermisos = async (req, res) => {
-    try{
-        const [roles] = await poolAGT.query('select id_opcion,nombre,url from permiso where estado=?',['A']);
+    try {
+        const {empresa} = req.params;
+        const [roles] = await poolAGT.query('select id_opcion,nombre,url from permiso where estado=? and id_empresa=?', ['A',empresa]);
         if (roles.length === 0) {
             res.status(404).send("El rol ingresado no existe.");
-        }else{
+        } else {
             res.json(roles);
         }
-    }catch(err){
+    } catch (err) {
         res.status(405).send("El rol ingresado no existe o esta inhabilitado.");
     }
 
+}
+
+controller.updatePermisos = async (req, res) => {
+    const permisos = req.body;
+
+    if (!Array.isArray(permisos)) {
+        return res.status(400).json({error: 'El cuerpo debe ser un arreglo de permisos'});
+    }
+    try {
+
+        for (const permiso of permisos) {
+            const {id_empresa, id_opcion, id_rol, id_usuario} = permiso;
+
+            await poolAGT.query(
+                `INSERT INTO permiso_rol (id_empresa, id_opcion, id_rol, id_usuario)
+                 VALUES (?, ?, ?, ?)`,
+                [id_empresa, id_opcion, id_rol, id_usuario]
+            );
+        }
+
+        res.status(200).json({message: 'Permisos asignados correctamente'});
+
+    } catch (error) {
+        console.error('Error al insertar permisos:', error);
+        res.status(500).json({error: 'Error en el servidor'});
+    }
+
+
+}
+
+controller.deletePermiso = async (req, res) => {
+    try {
+        const id_usuario = req.params.id;
+        const [response]=await poolAGT.query('delete from permiso_rol where id_usuario = ?', [id_usuario]);
+
+        if (response.affectedRows === 1){
+            res.status(200).json({msg: 'Permisos eliminado'});
+        }else{
+            res.status(200).json({msg: 'El usuario no tenia permisos a eliminar'});
+        }
+    }catch(err) {
+        console.error('Error al eliminar permisos:', error);
+        res.status(500).json({error: 'Error en el servidor'});
+    }
 }
 
 

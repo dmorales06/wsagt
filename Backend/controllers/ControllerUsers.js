@@ -13,8 +13,7 @@ controller.usuarios = async (req, res) => {
                                                 from usuario usr
                                                          left join rol roles on usr.id_rol = roles.id_rol
                                                          left join departamento dpt on dpt.id_departamento = usr.id_departamento
-                                                where usr.status = ?
-                                                  and usr.id_empresa = ?`,['A',id_empresa]);
+                                                where usr.id_empresa = ?`,[id_empresa]);
         res.json(usuarios);
     } catch (error) {
         console.error('Error al obtener usuarios:', error);
@@ -229,6 +228,33 @@ controller.updusuario = async (req, res) => {
         });
     }
 };
+
+controller.updateusr = async (req, res) => {
+    try{
+        const {empresa} = req.params;
+        const {status,id_usuario,usuario} = req.body;
+
+
+        const [updateData] = await poolAGT.query('UPDATE usuario SET status = ? WHERE id_usuario = ? and id_empresa=? and usuario=?',[status,id_usuario,empresa,usuario]);
+
+        if (updateData.affectedRows === 1) {
+            res.status(200).json({
+                message: 'Usuario actualizado exitosamente'
+            });
+        } else {
+            res.status(500).json({
+                error: 'Error al actualizar',
+                message: 'No se pudo actualizar el usuario'
+            });
+        }
+    }catch(error){
+        console.error('Error al actualizar usuario:', error);
+        res.status(500).json({
+            error: 'Error interno del servidor',
+            message: 'No se pudo actualizar el usuario'
+        });
+    }
+}
 
 controller.empresas = async (req, res) => {
     try{
