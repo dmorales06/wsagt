@@ -1,4 +1,4 @@
-// utils/utilsAlerts.js
+
 import React, { createContext, useContext, useState } from 'react';
 
 const AlertContext = createContext();

@@ -12,14 +12,13 @@ export function ViewLogin() {
     const [error, setError] = useState('');
     const [empresaSeleccionada, setEmpresaSeleccionada] = useState('');
     const [usuario, setUsuario] = useState('');
-
     const [contrasena, setContrasena] = useState('');
-
     const [mostrarContrasena, setMostrarContrasena] = useState(false);
 
 
     useEffect(() => {
         logout()
+        sessionStorage.clear();
         getEmpresa()
             .then(data => {
                 setEmpresas(data);
@@ -30,6 +29,7 @@ export function ViewLogin() {
             })
             .catch(err => addAlert('error', 'Servidor no responde'));
 
+
     }, []);
 
 
@@ -37,7 +37,7 @@ export function ViewLogin() {
 
 
     const handleLogin = async () => {
-        sessionStorage.setItem('usuario', JSON.stringify());
+
         if (!usuario || !contrasena || !empresaSeleccionada) {
             addAlert('warning', 'Por favor llena todos los campos');
             return;

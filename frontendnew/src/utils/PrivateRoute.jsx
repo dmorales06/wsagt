@@ -1,14 +1,9 @@
-import { ReactNode } from 'react';
+// PrivateRoute.js
 import { Navigate } from 'react-router-dom';
 import { isLoggedIn } from './authJWT';
 
-interface PrivateRouteProps {
-    children: ReactNode;
-}
-
-const PrivateRoute = ({ children }: PrivateRouteProps) => {
+const PrivateRoute = ({ children }) => {
     return isLoggedIn() ? children : <Navigate to="/" replace />;
 };
 
 export default PrivateRoute;
-

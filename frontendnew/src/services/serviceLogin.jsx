@@ -1,5 +1,8 @@
 import api from "./api";
 import React from 'react';
+import {data} from "react-router-dom";
+import {useAlert} from '../utils/utilsAlerts';
+import {getPermisosUser} from "./serviceUser";
 
 export async function getEmpresa() {
     try {
@@ -26,6 +29,7 @@ export async function getEmpresa() {
 
 
 export async function getTokenUser(usuario, contrasena,empresaSeleccionada,onError, onSuccess){
+
     try {
 
         const response = await api.post('/gentoken', {
@@ -34,10 +38,27 @@ export async function getTokenUser(usuario, contrasena,empresaSeleccionada,onErr
             empresa: empresaSeleccionada
         });
 
+        const dataUser = response.data.usuarioObtenido;
         const token = response.data.token;
+
+        const datosSession = {
+            id_usuario:dataUser.id_usuario,
+            usuario: dataUser.usuario,
+            nombre_usuario:dataUser.nombre_usuario,
+            status: dataUser.status === 'A' ? 'Activo' : dataUser.status,
+            id_rol:dataUser.id_rol,
+            id_puesto:dataUser.id_puesto,
+            id_departamento:dataUser.id_departamento,
+            id_empresa:dataUser.id_empresa,
+
+        }
+
+        getPermisosUser(datosSession.id_usuario,onError)
+
 
         // Opcional: guardar en localStorage
         localStorage.setItem('token', token);
+        sessionStorage.setItem('usuario', JSON.stringify(datosSession));
 
         // Llamar callback de éxito si existe
         if (onSuccess) {
@@ -46,18 +67,21 @@ export async function getTokenUser(usuario, contrasena,empresaSeleccionada,onErr
 
         return { success: true, token };
     } catch (error) {
-        // Llamar callback de error si existe
-        if (onError.response) {
-            // La solicitud fue hecha pero no hubo respuesta
-            onError('Usuario o contraseña erróneos, favor de validar');
-        } else if (onError.request) {
-            onError("⚠️ Se hizo la solicitud pero no hubo respuesta del servidor:");
-        } else {
-            if (error.message === 'Network Error') {
-                onError('Error de red: El servidor no está disponible.');
-            } else {
-                onError('Servidor no responde, favor comunicarse con soporte');
-            }
+        // Si es un error de red (no hay respuesta del servidor)
+        if (error.message === 'Network Error') {
+            onError('Error de red: El servidor no está disponible.');
+        }
+        // Si el servidor responde con error 404
+        else if (error.response && error.response.status === 406) {
+            onError('Usuario o contraseña erróneos, favor de validar.');
+        }
+        // Puedes manejar otros códigos específicos si lo deseas
+        else if (error.response && error.response.status === 405) {
+            onError('El usuario no existe o esta inhabilitado.');
+        }
+        else {
+            // Otro tipo de error
+            onError('Servidor no responde, favor comunicarse con soporte.');
         }
 
         return { success: false, error: error.message };
@@ -65,6 +89,3 @@ export async function getTokenUser(usuario, contrasena,empresaSeleccionada,onErr
     }
 }
 
-export interface EmpresaSeleccionada {
-
-}

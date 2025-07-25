@@ -19,7 +19,7 @@ export function Inicio(){
 
 
     // Función que ejecuta logout y navegación
-    const handleLogout = () => (logout(), navigate('/'));
+    const handleLogout = () => (logout(), navigate('/'),sessionStorage.clear());
 
 
     return (
@@ -36,9 +36,9 @@ export function Inicio(){
                         <div className="flex items-center space-x-4">
                             <div className="flex items-center space-x-2">
                                 <User className="w-5 h-5 text-gray-400" />
-                                <span className="text-sm text-gray-700">Pedro</span>
+                                <span className="text-sm text-gray-700">{JSON.parse(sessionStorage.getItem('usuario')).nombre_usuario}</span>
                                 <span className="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
-                                    Activo
+                                    {JSON.parse(sessionStorage.getItem('usuario')).status}
                                 </span>
                             </div>
                             <button

@@ -3,6 +3,7 @@ import axios from "axios";
 
 // Crear una instancia
 const api = axios.create({
+    //baseURL: "https://wsagt.onrender.com/api",
     baseURL: "http://localhost:2000/api",
 });
 
