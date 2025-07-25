@@ -47,7 +47,7 @@ export function ViewLogin() {
             (errorMessage) => addAlert('error', errorMessage),
             // Callback para éxito
             (successMessage) => {
-                addAlert('success', successMessage);
+                //addAlert('success', successMessage);
                 navigate('/home'); // Redirección al home si login es exitoso
             }
         );

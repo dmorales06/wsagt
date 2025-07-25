@@ -24,7 +24,6 @@ export async function getAllUsers(){
 export async function getPermisosUser(id_usuario,onError){
     try{
         const response = await api.get('/permisosUser/' + id_usuario);
-        console.log(response.data);
         sessionStorage.setItem('permisos', JSON.stringify(response.data));
         return response.data;
 

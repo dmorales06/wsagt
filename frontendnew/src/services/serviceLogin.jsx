@@ -39,6 +39,7 @@ export async function getTokenUser(usuario, contrasena,empresaSeleccionada,onErr
         });
 
         const dataUser = response.data.usuarioObtenido;
+
         const token = response.data.token;
 
         const datosSession = {
@@ -50,6 +51,8 @@ export async function getTokenUser(usuario, contrasena,empresaSeleccionada,onErr
             id_puesto:dataUser.id_puesto,
             id_departamento:dataUser.id_departamento,
             id_empresa:dataUser.id_empresa,
+            nom_rol:dataUser.nom_rol,
+            rol:dataUser.rol,
 
         }
 
