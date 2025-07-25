@@ -14,7 +14,7 @@ controller.updrol = async (req, res) => {
     const rol = roles.find(c => c.nombre === req.params.rol);
 
     const updateData = {
-        endpoint:req.body.endpoint,
+        endpoint: req.body.endpoint,
     }
     console.log(rol);
 
@@ -30,14 +30,28 @@ controller.updrol = async (req, res) => {
 
 //obtener permisos por usuario
 controller.permisosUser = async (req, res) => {
-    const id_usuario = req.params.id;
-    const [permisos] = await poolAGT.query(`select usrpermisos.id_rol,usrpermisos.id_opcion,permisos.nombre,permisos.url from acountgt2.permiso_rol usrpermisos
-join acountgt2.permiso permisos on usrpermisos.id_opcion=permisos.id_opcion
-where id_usuario=? and permisos.estado='A'`,[id_usuario,'A']);
-    res.json(permisos);
+    try {
+        const id_usuario = req.params.id;
+        const [permisos] = await poolAGT.query(`select usrpermisos.id_rol,
+                                                       usrpermisos.id_opcion,
+                                                       permisos.nombre,
+                                                       permisos.url
+                                                from permiso_rol usrpermisos
+                                                         join permiso permisos
+                                                              on usrpermisos.id_opcion = permisos.id_opcion
+                                                where id_usuario = ?
+                                                  and permisos.estado = 'A'`, [id_usuario, 'A']);
+
+        if (permisos.length === 0) {
+            res.status(404).send("El usuario no tiene permisos.");
+        }else{
+            res.json(permisos);
+        }
+
+    } catch (err) {
+        res.status(405).send("El usuario no existe o esta inhabilitado.");
+    }
 }
-
-
 
 
 export default controller;
