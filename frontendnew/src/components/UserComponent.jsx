@@ -80,6 +80,28 @@ export const UserComponent = ()=>{
         setUserPermissions(permissionsMap);
     };
 
+    const handleEditPermissions = (user) => {
+        addAlert('info', 'Funcionalidad en proceso', user);
+        /*setEditingUser(user.id);
+        setEditPermissions([...user.permissions]);*/
+    };
+
+    const handleSavePermissions = (userId) => {
+        addAlert('info', 'Funcionalidad en proceso');
+        /*const updatedUser = UserService.updateUserPermissions(userId, editPermissions, currentUser);
+        if (updatedUser) {
+            setUsers(users.map(u => u.id === userId ? updatedUser : u));
+            setEditingUser(null);
+            setEditPermissions([]);*/
+
+    };
+
+    const handleCancelEdit = () => {
+        addAlert('info', 'Funcionalidad en proceso');
+        /*setEditingUser(null);
+        setEditPermissions([]);*/
+    };
+
     // Placeholder function for handling new user creation
     const handleAddUser = () => {
         addAlert('info', 'Funcionalidad para añadir usuario (próximamente)');
@@ -153,13 +175,13 @@ export const UserComponent = ()=>{
                                                     {editingUser === user.id_usuario ? (
                                                         <>
                                                             <button
-                                                                //onClick={() => handleSavePermissions(user.id)}
+                                                                onClick={() => handleSavePermissions(user.id_usuario)}
                                                                 className="p-2 text-green-600 hover:bg-green-50 rounded-lg"
                                                             >
                                                                 <Save className="w-4 h-4" />
                                                             </button>
                                                             <button
-                                                                //onClick={handleCancelEdit}
+                                                                onClick={handleCancelEdit}
                                                                 className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg"
                                                             >
                                                                 <X className="w-4 h-4" />
@@ -167,7 +189,7 @@ export const UserComponent = ()=>{
                                                         </>
                                                     ) : (
                                                         <button
-                                                            //onClick={() => handleEditPermissions(user)}
+                                                            onClick={() => handleEditPermissions(user)}
                                                             className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
                                                         >
                                                             <Edit3 className="w-4 h-4" />
